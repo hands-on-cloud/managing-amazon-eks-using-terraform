@@ -1,6 +1,6 @@
 #creating the private EKS Node Group:
 resource "aws_eks_node_group" "private_node_group" {
-  cluster_name    = aws_eks_cluster.eks_cluster.cluster_name
+  cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "private-node-group"
   node_role_arn   = aws_iam_role.eks_node_role.arn
 
