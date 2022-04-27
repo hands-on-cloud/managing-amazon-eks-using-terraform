@@ -16,6 +16,12 @@ module "vpc" {
   tags = {
     Terraform = "true"
   }
+
+  #these tags are required for load balancer placement:
+  public_subnet_tags = {
+    "kubernetes.io/role/elb"                    = "1"
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+  }
 }
 
 output "public_subnet_ids" {

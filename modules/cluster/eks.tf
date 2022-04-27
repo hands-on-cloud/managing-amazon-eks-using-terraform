@@ -1,6 +1,6 @@
 #creating the EKS Cluster:
 resource "aws_eks_cluster" "eks_cluster" {
-  name     = "terraform-eks-cluster"
+  name     = var.cluster_name
   role_arn = aws_iam_role.eks_iam_role.arn
 
   vpc_config {
