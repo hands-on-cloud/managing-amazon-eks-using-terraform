@@ -46,7 +46,13 @@ resource "aws_iam_policy" "eks_ca_iam_policy" {
   })
 }
 
+#attaching the policy to the role:
 resource "aws_iam_role_policy_attachment" "eks_ca__iam_policy_attach" {
   role       = aws_iam_role.eks_ca_iam_role.name
   policy_arn = aws_iam_policy.eks_ca_iam_policy.arn
+}
+
+#the role ARN would be needed later in cluster autoscaler configuration:
+output "eks_ca_iam_role_arn" {
+  value = aws_iam_role.eks_ca_iam_role.arn
 }
