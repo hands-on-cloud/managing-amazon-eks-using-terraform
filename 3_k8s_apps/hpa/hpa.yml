@@ -1,0 +1,18 @@
+# EKS Terraform - Nginx HPA
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-hpa
+  namespace: nginx-ns
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu #scaling based on CPU
+        targetAverageUtilization: 5 #setting low value - so that HPA scale out can be seen quickly on running load generator script
